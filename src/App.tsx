@@ -1,13 +1,14 @@
-
-
+import { BrowserRouter as Router } from "react-router-dom";
+import Pages from './pages/Pages';
 function App() {
-
-  return (
-      <div className="App">
-        <p style={{textAlign:'center'}}>Date here</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe praesentium similique dolores aspernatur ducimus maxime esse adipisci repellendus necessitatibus? Reiciendis!</p>
-    </div>
-  )
+	return (
+		<Router>
+			<div className="App">
+        <Pages/>
+				<p style={{ textAlign: "center" }}>Date here</p>
+			</div>
+		</Router>
+	);
 }
 
-export default App
+export default App;
