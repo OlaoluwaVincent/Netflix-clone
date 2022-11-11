@@ -7,8 +7,8 @@ function Users() {
     const names =['Okiki', 'John', 'Olaoluwa']
   return (
     <div className="usersContainer">
-  { names.map((name)=>(
-    <UserBox userName={name}/>
+  { names.map((name, i)=>(
+    <UserBox key={`${name}/${i}`} userName={name}/>
    ))}
     </div>
   )

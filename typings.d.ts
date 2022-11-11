@@ -3,6 +3,7 @@ export interface Movies {
     backdrop_path: string;
     id: number;
     media_type: string;
+    poster_path:string;
     original_language: string;
     original_title: string;
     overview: string;
