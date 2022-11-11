@@ -1,4 +1,3 @@
-import { useState } from "react";
 import UserBox from "../components/UserBox";
 type Props = {
     names:string[]
@@ -7,11 +6,11 @@ type Props = {
 function Users() {
     const names =['Okiki', 'John', 'Olaoluwa']
   return (
-    <>
+    <div className="usersContainer">
   { names.map((name)=>(
     <UserBox userName={name}/>
    ))}
-    </>
+    </div>
   )
 }
 

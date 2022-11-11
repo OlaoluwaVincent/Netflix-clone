@@ -1,11 +1,10 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import Pages from './pages/Pages';
+import Pages from "./page/AllPages";
 function App() {
 	return (
 		<Router>
 			<div className="App">
-        <Pages/>
-				<p style={{ textAlign: "center" }}>Date here</p>
+				<Pages />
 			</div>
 		</Router>
 	);
