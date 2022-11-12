@@ -30,6 +30,7 @@
   color: var(--smokewhite)
 }
 
+
 body {
   max-width: 480px;
   background: var(--black);
@@ -42,6 +43,11 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+img {
+  width: 100%;
+  height: 100%
 }
 
 /* User component/Page */
@@ -109,19 +115,28 @@ a {
   min-height: 100vh;
   background: var(--black);
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .homepage__image {
   width: 100%;
+  max-height: 70vh;
   height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
-.homepage_img {
-  min-width: 100vw;
-  max-height: 80vh;
-  height: 100%;
+.homepage__img {
+  height: 70vh;
+  max-height: 70vh;
   width: 100%;
+}
+
+.homepage__img>img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -135,10 +150,6 @@ a {
   letter-spacing: 1px;
 }
 
-img {
-  width: 100%;
-  height: 100%
-}
 
 .actions {
   display: flex;
@@ -175,13 +186,31 @@ img {
 }
 
 .listofmovies {
-  margin-top: 10px;
+  margin: 10px 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   overflow-x: scroll;
   padding: 0 10px;
   position: relative;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.listofmovies::-webkit-scrollbar {
+  height: 5px;
+  display: none;
+}
+
+.listofmovies::-webkit-scrollbar-track {
+  background-color: var(--gray);
+}
+
+.listofmovies::-webkit-scrollbar-thumb {
+  background-color: var(--smokewhite);
+  border-radius: 20px;
 }
 
 .movies {
@@ -189,7 +218,7 @@ img {
   gap: 8px;
   flex-wrap: nowrap;
   width: max-content;
-  margin-top: 22px;
+  margin-top: 30px;
 }
 
 .movie {
@@ -215,8 +244,9 @@ img {
 .category__title {
   font-size: 22px;
   line-height: 15px;
-  top: 0;
+  top: 5px;
   position: absolute;
+  text-transform: capitalize;
 }
 
 

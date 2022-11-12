@@ -1,60 +1,57 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import Header from "../components/Header";
 import { Movies } from "../../typings";
 import Actions from "../components/Actions";
 import ListOfMoviesComponent from "../components/ListOfMoviesComponent";
+import { getPopularMovies } from "../../utils/dataFetching";
 
 const Home = () => {
-	const [latest, setLatest] = useState<Movies | null>(null);
+	const [result, setResult] = useState<Movies | undefined>();
 	const { loggedInUser } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!loggedInUser) {
-			navigate("/");
-		} else {
-			getLatest();
-		}
-		//   Allow only specific users
-		//   if(loggedInUser ){
-		//     navigate('/')
-		// }
-		return () => {};
-	}, [loggedInUser]);
+		let mounted = true;
 
-	const getLatest = async () => {
-		try {
-			const res = await fetch(
-				"https://api.themoviedb.org/3/trending/all/day?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US"
-			);
-			const data = await res.json();
-			const result: Movies = data.results[0];
-			setLatest(result);
-		} catch (error) {
-			console.log(error);
+		const wait: (func: Function) => Promise<void> = async (func) => {
+			const res = await func();
+			setResult(res[0]);
+		};
+
+		if (mounted) {
+			if (!loggedInUser) {
+				navigate("/");
+			} else {
+				wait(getPopularMovies);
+			}
 		}
-	};
+
+		console.log(result);
+		return () => {
+			mounted = false;
+		};
+	}, [loggedInUser]);
 
 	return (
 		<div className="homepage">
 			<Header />
-			{latest && (
+			{result && (
 				<div className="homepage__image">
-					<LazyLoadImage
-						src={`https://image.tmdb.org/t/p/original/${latest.poster_path}`}
-						alt={latest.title}
-						effect="blur"
-						className="homepage_img"
-					/>
+					<div className="homepage__img">
+						<img
+							src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
+							alt={result.title}
+						/>
+					</div>
+
 					<p className="homepage__trending">#1 Trending</p>
 				</div>
 			)}
 			<Actions />
-			<ListOfMoviesComponent category="Popular Movies" />
-			<ListOfMoviesComponent category="Trending on Netflix" />
-			<ListOfMoviesComponent category="Top Series" />
+			<ListOfMoviesComponent category="popular" />
+			<ListOfMoviesComponent category="trending" />
+			<ListOfMoviesComponent category="now playing" />
 		</div>
 	);
 };
