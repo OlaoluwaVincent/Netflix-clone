@@ -8,4 +8,8 @@ export interface Movies {
     original_title: string;
     overview: string;
     vote_average: number;
+    adult: boolean;
+    genre_ids:number[];
+    overview:string;
+    rating:number;
 }
