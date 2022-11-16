@@ -5,6 +5,7 @@ import {
 	getPopularMovies,
 	getTrendingMovies,
 	getNowPlayingMovies,
+	getFullDetailOfMovie
 } from "../../utils/dataFetching";
 
 type Props = {
@@ -17,7 +18,7 @@ const ListOfMoviesComponent = ({ category }: Props) => {
 		let mounted = true;
 
 		const wait: (func: Function) => Promise<void> = async (func) => {
-			const res = await func();
+			const res:Movies[] = await func();
 			setResult(res);
 		};
 
@@ -45,7 +46,7 @@ const ListOfMoviesComponent = ({ category }: Props) => {
 
 	return (
 		<div className="listofmovies">
-			<h1 className="category__title">{category}</h1>
+			<h1 className="category__header">{category}</h1>
 			<div className="movies">
 				{result &&
 					result.map((movies) => (

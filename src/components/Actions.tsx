@@ -1,7 +1,6 @@
-import {ReactComponent as AddIcon} from '../assets/svg/addWhite.svg'
-import {ReactComponent as PlayIcon} from '../assets/svg/play.svg'
-import {ReactComponent as InfoIcon} from '../assets/svg/infoWhite.svg'
-
+import { ReactComponent as AddIcon } from "../assets/svg/addWhite.svg";
+import { ReactComponent as PlayIcon } from "../assets/svg/play.svg";
+import { ReactComponent as InfoIcon } from "../assets/svg/infoWhite.svg";
 
 const Actions = () => {
 	return (

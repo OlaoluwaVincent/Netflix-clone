@@ -26,8 +26,6 @@ const Home = () => {
 				wait(getPopularMovies);
 			}
 		}
-
-		console.log(result);
 		return () => {
 			mounted = false;
 		};
