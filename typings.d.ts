@@ -12,11 +12,19 @@ export interface Movies {
     genre_ids: number[];
     overview: string;
     rating: number;
+    media_type: {
+        tv: string;
+        series: string;
+        collection: string;
+        people: string;
+    }
+    release_date: string;
 }
 
 export interface DetailedMovie {
     adult: boolean,
     backdrop_path: string,
+    poster_path: string;
     genres: Genre[],
     id: number,
     original_title: string,

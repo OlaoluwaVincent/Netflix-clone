@@ -94,7 +94,20 @@ export const getTrendingMovies = async () => {
 };
 
 
+// SEARCH
 
+export const searchForMovies = async (query:string) => {
+    // Region can be specified
+    try {
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US&query=${query}&page=1`
+        );
+        const data = await res.json();
+        const result: Movies[] = data.results;
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 
 // SERIES

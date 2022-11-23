@@ -44,7 +44,7 @@ const Modal = ({ open, close, id }: Props) => {
 			/>
 			<div style={Modal_styles}>
 				<LazyLoadImage
-					src={`https://image.tmdb.org/t/p/original${content.backdrop_path}`}
+					src={content.backdrop_path === null ? `https://image.tmdb.org/t/p/original${content.backdrop_path}` : `https://image.tmdb.org/t/p/original${content.poster_path}`}
 					alt={content.original_title}
 					className="modal__img"
 				/>
