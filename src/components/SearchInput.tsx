@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import { ReactComponent as SearchIcon } from "../assets/svg/search.svg";
 import { searchForMovies } from "../../utils/dataFetching";
+import { SeachedContent } from "../context/searchContext";
 import { Movies } from "../../typings";
+
 type Props = {
-	setResult: React.Dispatch<React.SetStateAction<Movies[] | undefined>>;
+	search: Movies[];
+	setSearch: React.Dispatch<React.SetStateAction<Movies[]>>;
 };
 
-const SearchInput = ({ setResult }: Props) => {
+const SearchInput = () => {
 	const [text, setText] = useState<string>("");
 
-	const handleSearch = async () => {
-		if (text.length >=2) {
-            // if the input text is atleast 2 characters
+	const { setSearch } = useContext(SeachedContent) as Props;
+
+
+	// Handle the Search Request
+	const handleSearch = async (e: React.SyntheticEvent) => {
+		e.preventDefault();
+
+		if (text.length >= 2) {
+			// if the input text is atleast 2 characters
 			const res = await searchForMovies(text);
 
 			if (res) {
@@ -22,26 +31,29 @@ const SearchInput = ({ setResult }: Props) => {
 						? -1
 						: 0
 				);
-
-				setResult(sorted);
+				setSearch(sorted);
 			}
-		}else if(text.length < 2){
-            // If the input text is less than 2 characters
-            setResult([])
-        }
+		} else if (text.length < 2) {
+			// If the input text is less than 2 characters
+			setSearch([]);
+		}
 	};
+
 	return (
-		<div className="searchContainer">
+		<form
+			className="searchContainer"
+			onSubmit={handleSearch}>
 			<input
 				type="text"
-                placeholder="Search for a show, movie"
+				placeholder="Search for a show, movie"
 				value={text}
-				onChange={(e)=>setText(e.target.value)}
+				onChange={(e) => setText(e.target.value)}
+				className="search__input"
 			/>
-            <span onClick={handleSearch}>
-			<SearchIcon className="searchIcon" />
-            </span>
-		</div>
+			<span onClick={handleSearch}>
+				<SearchIcon className="searchIcon" />
+			</span>
+		</form>
 	);
 };
 

@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { Movies } from "../../typings";
 import Actions from "../components/Actions";
 import ListOfMoviesComponent from "../components/ListOfMoviesComponent";
 import { getPopularMovies } from "../../utils/dataFetching";
+import SearchInput from "../components/SearchInput";
+
 
 const Home = () => {
 	const [result, setResult] = useState<Movies | undefined>();
@@ -31,6 +33,12 @@ const Home = () => {
 		};
 	}, [loggedInUser]);
 
+	
+	if(!result){
+		return <p className="loading">Loading...</p>
+	}
+
+	
 	return (
 		<div className="homepage">
 			<Header />

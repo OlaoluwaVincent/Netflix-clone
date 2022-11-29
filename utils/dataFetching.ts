@@ -1,4 +1,4 @@
-import { DetailedMovie, Movies } from '../typings'
+import { DetailedMovie, Movies, Video } from '../typings'
 
 // MOVIES
 
@@ -108,6 +108,22 @@ export const searchForMovies = async (query:string) => {
         console.log(error);
     }
 };
+
+
+// VIDEO
+export const MovieVideo = async (movieId:number) => {
+    // Region can be specified
+    try {
+        const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US` );
+        const data = await res.json();
+        const result:Video = data.results[1];
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+
 
 
 // SERIES

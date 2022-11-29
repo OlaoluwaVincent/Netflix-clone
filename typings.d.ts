@@ -13,6 +13,7 @@ export interface Movies {
     overview: string;
     rating: number;
     media_type: {
+  
         tv: string;
         series: string;
         collection: string;
@@ -21,22 +22,19 @@ export interface Movies {
     release_date: string;
 }
 
-export interface DetailedMovie {
-    adult: boolean,
-    backdrop_path: string,
-    poster_path: string;
+export interface DetailedMovie extends Movies {
     genres: Genre[],
-    id: number,
-    original_title: string,
-    overview: string,
-    release_date: string,
     tagline: string,
-    title: string,
-    vote_average: number,
     vote_count: number,
 }
 
 interface Genre {
     id: number,
     name: string,
+}
+interface Video{
+     /** This is the way to document with TYPESCRIPT*/
+    id:string;
+    key:string;
+    official:boolean;
 }

@@ -5,7 +5,6 @@ import {
 	getPopularMovies,
 	getTrendingMovies,
 	getNowPlayingMovies,
-	getFullDetailOfMovie
 } from "../../utils/dataFetching";
 
 type Props = {
