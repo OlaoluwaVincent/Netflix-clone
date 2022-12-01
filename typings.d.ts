@@ -6,6 +6,7 @@ export interface Movies {
     poster_path: string;
     original_language: string;
     original_title: string;
+    original_name:string;
     overview: string;
     vote_average: number;
     adult: boolean;

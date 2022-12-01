@@ -321,9 +321,6 @@ img {
 
 }
 
-
-
-
 .features {
   display: flex;
   justify-content: space-evenly;
@@ -454,8 +451,11 @@ img {
   object-position: center;
 }
 
-
-
+/* Movie Page */
+.moviePage{
+  height: 100vh;
+  min-height: 100vh;
+}
 
 
 
