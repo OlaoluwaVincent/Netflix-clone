@@ -4,13 +4,13 @@ import { SearchContextComponent } from "./context/searchContext";
 
 function App() {
 	return (
-		<SearchContextComponent>
-			<Router>
+		<Router>
+			<SearchContextComponent>
 				<div className="App">
 					<Pages />
 				</div>
-			</Router>
-		</SearchContextComponent>
+			</SearchContextComponent>
+		</Router>
 	);
 }
 

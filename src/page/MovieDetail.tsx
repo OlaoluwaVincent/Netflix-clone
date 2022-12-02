@@ -31,7 +31,7 @@ const MovieDetail = () => {
 	const { data, error } = useSwr(
 		`https://api.themoviedb.org/3/movie/${id}?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US`,
 		fetcher,
-		{ suspense: true }
+		// { suspense: true }
 	) as Props;
 
 	return <div className="moviePage">MovieDetail</div>;

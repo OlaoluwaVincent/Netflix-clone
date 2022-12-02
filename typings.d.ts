@@ -1,6 +1,7 @@
 export interface Movies {
     adult: boolean;
     backdrop_path: string;
+    first_air_date:string;
     genre_ids: number[];
     id: number;
     media_type: string;

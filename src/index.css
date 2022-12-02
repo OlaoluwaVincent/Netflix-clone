@@ -436,6 +436,13 @@ img {
   background: var(--midgray);
 }
 
+.searchMovies__categories{
+  padding:10px 5%;
+  background: var(--midgray);
+  display: flex;
+  justify-content: space-between;
+}
+
 .playIcon {
   cursor: hover;
 }

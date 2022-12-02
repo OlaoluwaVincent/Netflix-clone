@@ -118,7 +118,7 @@ export const MovieVideo:(movieId: number) => Promise<Video | undefined> = async 
     try {
         const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US` );
         const data = await res.json();
-        return data.results[1];
+        return data.results![1];
     } catch (error) {
         console.log(error);
     }

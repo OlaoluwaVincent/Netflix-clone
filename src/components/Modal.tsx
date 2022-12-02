@@ -17,24 +17,16 @@ const Modal = ({ open, close, id }: Props) => {
 	const [video, setVideo] = useState<Video | undefined>();
 
 	useEffect(() => {
-		/** Subscribe onMount */
-		let mounted = true;
-
-		if (mounted) {
-			const fetchData = async () => {
-				const data = await getFullDetailOfMovie(id);
-				const vid = await MovieVideo(id);
-				setVideo(vid);
-				setContent(data);
-				return;
-			};
-			fetchData();
-		}
-
-		return () => {
-			mounted = false;
+		const fetchData = async () => {
+			const data = await getFullDetailOfMovie(id);
+			const vid = await MovieVideo(id);
+			setVideo(vid);
+			setContent(data);
+			return;
 		};
-	}, [id]);
+		fetchData();
+
+	}, []);
 
 	if (!open) return null;
 	if (!content) {
