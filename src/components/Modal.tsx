@@ -1,11 +1,9 @@
-import { ReactComponent as Play } from "../assets/svg/play.svg";
-import { ReactComponent as AddtoList } from "../assets/svg/add.svg";
-import { ReactComponent as DownArrow } from "../assets/svg/reveal.svg";
 import { createPortal } from "react-dom";
-import { DetailedMovie, Video } from "../../typings";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { getFullDetailOfMovie, MovieVideo } from "../../utils/dataFetching";
 import { useEffect, useState } from "react";
+// Typing
+import { DetailedMovie, Video } from "../../typings";
+// Utilities
+import { getFullDetailOfMovie, MovieVideo } from "../../utils/dataFetching";
 
 type Props = {
 	open: boolean;
@@ -14,9 +12,12 @@ type Props = {
 };
 
 const Modal = ({ open, close, id }: Props) => {
+
 	const [content, setContent] = useState<DetailedMovie | undefined>();
 	const [video, setVideo] = useState<Video | undefined>();
+
 	useEffect(() => {
+		/** Subscribe onMount */
 		let mounted = true;
 
 		if (mounted) {
@@ -25,6 +26,7 @@ const Modal = ({ open, close, id }: Props) => {
 				const vid = await MovieVideo(id);
 				setVideo(vid);
 				setContent(data);
+				return;
 			};
 			fetchData();
 		}

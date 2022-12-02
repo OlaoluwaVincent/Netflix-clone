@@ -2,21 +2,21 @@ import { useState, createContext } from "react";
 import { Movies } from "../../typings";
 
 type Props = {
-	search: Movies[];
+	searchContext: Movies[];
 	/** this is used for direct change, use '(( )=>void)' if you will be mutating*/
-	setSearch: React.Dispatch<React.SetStateAction<Movies[]>>;
+	setSearchContext: React.Dispatch<React.SetStateAction<Movies[]>>;
 };
 
 const SeachedContent = createContext<Props | null>(null);
 
-const SearchContext = ({ children }: any) => {
-	const [search, setSearch] = useState<Movies[]>([]);
+const SearchContextComponent = ({ children }: any) => {
+	const [searchContext, setSearchContext] = useState<Movies[]>([]);
 
 	return (
-		<SeachedContent.Provider value={{ search, setSearch }}>
+		<SeachedContent.Provider value={{ searchContext, setSearchContext }}>
 			{children}
 		</SeachedContent.Provider>
 	);
 };
 
-export { SeachedContent, SearchContext };
+export { SeachedContent, SearchContextComponent };

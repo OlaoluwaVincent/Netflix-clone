@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useSwr from "swr";
+// Typings
 import { DetailedMovie } from "../../typings";
 
 type Props = {
@@ -22,7 +23,7 @@ const MovieDetail = () => {
 	const fetcher = (url: string) =>
 		fetch(url).then((r) => {
 			if (!r.ok) {
-				throw new Error("Something went wrong");
+				throw new Error("Invalid URL");
 			}
 			return r.json();
 		});

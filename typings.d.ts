@@ -1,26 +1,18 @@
 export interface Movies {
-    title: string;
+    adult: boolean;
     backdrop_path: string;
+    genre_ids: number[];
     id: number;
     media_type: string;
-    poster_path: string;
     original_language: string;
+    original_name: string;
     original_title: string;
-    original_name:string;
     overview: string;
-    vote_average: number;
-    adult: boolean;
-    genre_ids: number[];
-    overview: string;
+    poster_path: string;
     rating: number;
-    media_type: {
-  
-        tv: string;
-        series: string;
-        collection: string;
-        people: string;
-    }
     release_date: string;
+    title: string;
+    vote_average: number;
 }
 
 export interface DetailedMovie extends Movies {
@@ -29,13 +21,21 @@ export interface DetailedMovie extends Movies {
     vote_count: number,
 }
 
+export interface MediaType {
+    tv: string;
+    series: string;
+    collection: string;
+    people: string;
+}
+
 interface Genre {
     id: number,
     name: string,
 }
-interface Video{
-     /** This is the way to document with TYPESCRIPT*/
-    id:string;
-    key:string;
-    official:boolean;
+
+interface Video {
+    /** This is the way to document with TYPESCRIPT*/
+    id: string;
+    key: string;
+    official: boolean;
 }

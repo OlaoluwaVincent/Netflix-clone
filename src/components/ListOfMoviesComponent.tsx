@@ -15,9 +15,9 @@ const ListOfMoviesComponent = ({ category }: Props) => {
 	const [result, setResult] = useState<Movies[] | undefined>();
 	useEffect(() => {
 		let mounted = true;
-
+		/** Async function that awaits the function recieved*/
 		const wait: (func: Function) => Promise<void> = async (func) => {
-			const res:Movies[] = await func();
+			const res:Movies[]= await func();
 			setResult(res);
 		};
 

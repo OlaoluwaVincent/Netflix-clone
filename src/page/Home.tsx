@@ -1,11 +1,12 @@
 import { useEffect, useState, } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { Movies } from "../../typings";
 import Actions from "../components/Actions";
 import ListOfMoviesComponent from "../components/ListOfMoviesComponent";
+// Utilities
 import { getPopularMovies } from "../../utils/dataFetching";
-import SearchInput from "../components/SearchInput";
+// TYPINGS
+import { Movies } from "../../typings";
 
 
 const Home = () => {

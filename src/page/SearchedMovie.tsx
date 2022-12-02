@@ -7,12 +7,12 @@ import { SeachedContent } from "../context/searchContext";
 import SearchInput from "../components/SearchInput";
 
 type Props = {
-	search: Movies[];
+	searchContext: Movies[];
 };
 
 const SearchedMovie = () => {
 	// Search comes from the CONTEXT state management
-	const { search } = useContext(SeachedContent) as Props;
+	const { searchContext } = useContext(SeachedContent) as Props;
 	const navigate = useNavigate();
 
 	const handleMovieClick = (data: Movies) => {
@@ -23,9 +23,9 @@ const SearchedMovie = () => {
 		<>
 			<div className="searchPage">
 				<SearchInput />
-				{search.length < 1 && <p style={P}>Enter a Search Term</p>}
+				{searchContext.length < 1 && <p style={P}>Enter a Search Term</p>}
 				<div className="searchedMovies">
-					{search?.map((movie) => (
+					{searchContext?.map((movie) => (
 						<div
 							key={movie.id}
 							className="searchedMovie"

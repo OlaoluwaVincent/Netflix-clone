@@ -5,14 +5,14 @@ import { SeachedContent } from "../context/searchContext";
 import { Movies } from "../../typings";
 
 type Props = {
-	search: Movies[];
-	setSearch: React.Dispatch<React.SetStateAction<Movies[]>>;
+	searchContext: Movies[];
+	setSearchContext: React.Dispatch<React.SetStateAction<Movies[]>>;
 };
 
 const SearchInput = () => {
 	const [text, setText] = useState<string>("");
 
-	const { setSearch } = useContext(SeachedContent) as Props;
+	const { setSearchContext } = useContext(SeachedContent) as Props;
 
 
 	// Handle the Search Request
@@ -31,11 +31,11 @@ const SearchInput = () => {
 						? -1
 						: 0
 				);
-				setSearch(sorted);
+				setSearchContext(sorted);
 			}
 		} else if (text.length < 2) {
 			// If the input text is less than 2 characters
-			setSearch([]);
+			setSearchContext([]);
 		}
 	};
 
@@ -45,7 +45,7 @@ const SearchInput = () => {
 			onSubmit={handleSearch}>
 			<input
 				type="text"
-				placeholder="Search for a show, movie"
+				placeholder="Search for a show, movie or series"
 				value={text}
 				onChange={(e) => setText(e.target.value)}
 				className="search__input"
