@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Actions from "../components/Actions";
 import ListOfMoviesComponent from "../components/ListOfMoviesComponent";
 // Utilities
-import { getPopularMovies } from "../../utils/dataFetching";
+import { getLatestMovie, getPopularMovies } from "../../utils/dataFetching";
 // TYPINGS
 import { Movies } from "../../typings";
 
@@ -47,12 +47,12 @@ const Home = () => {
 				<div className="homepage__image">
 					<div className="homepage__img">
 						<img
-							src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
+							src={!result.poster_path? `https://image.tmdb.org/t/p/original/${result.poster_path}`: `https://image.tmdb.org/t/p/original/${result.backdrop_path}`}
 							alt={result.title}
 						/>
 					</div>
 
-					<p className="homepage__trending">#1 Trending</p>
+					<p className="homepage__trending">#1 Trending- {result.title}</p>
 				</div>
 			)}
 			<Actions />

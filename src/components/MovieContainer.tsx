@@ -8,24 +8,22 @@ type Props = {
 
 const MovieContainer = ({ movie }: Props) => {
 	const [isOpen, setIsOPen] = useState(false);
-	const [singleId, setSingleId] = useState<number>()
+	
+	// Close Modal
 	const onClose = () => {
 		setIsOPen(false);
 	};
-	const handleMovieClick =async (id:number) => {
+	const handleMovieClick = () => {
 		// What happens when a movie card is clicked?
 		// It opens a MODAL...
 			setIsOPen(true);
-			if(typeof id === "number"){
-				setSingleId(id)
-			}
 	};
 
 	return (
 		<>
 			<div
 				className="movie"
-				onClick={()=>handleMovieClick(movie.id)}>
+				onClick={handleMovieClick}>
 
 				<LazyLoadImage
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}

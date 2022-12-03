@@ -40,20 +40,7 @@ const SearchedMovie = () => {
 				{searchContext.length < 1 ? (
 					<p style={instruction}>Enter a Search Term</p>
 				) : (
-					<div className="searchMovies__categories">
-						<p onClick={() => setFiltered(searchContext)}>
-							All <span>{searchContext.length}</span>
-						</p>
-						<p
-							style={active}
-							onClick={() => setFiltered(movie)}>
-							Movie <span>{movie.length}</span>
-						</p>
-
-						<p onClick={() => setFiltered(tv)}>
-							Series <span>{tv.length}</span>
-						</p>
-					</div>
+					CategoriesSelection()
 				)}
 				<div className="searchedMovies">
 					{searchContext.map((movie) => (
@@ -82,6 +69,23 @@ const SearchedMovie = () => {
 			</div>
 		</>
 	);
+
+	function CategoriesSelection() {
+		return <div className="searchMovies__categories">
+			<p onClick={() => setFiltered(searchContext)}>
+				All <span>{searchContext.length}</span>
+			</p>
+			<p
+				style={active}
+				onClick={() => setFiltered(movie)}>
+				Movie <span>{movie.length}</span>
+			</p>
+
+			<p onClick={() => setFiltered(tv)}>
+				Series <span>{tv.length}</span>
+			</p>
+		</div>;
+	}
 };
 
 export default SearchedMovie;

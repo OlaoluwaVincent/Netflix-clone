@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
+import {Link} from 'react-router-dom'
 // Typing
 import { DetailedMovie, Video } from "../../typings";
 // Utilities
@@ -39,15 +40,13 @@ const Modal = ({ open, close, id }: Props) => {
 				style={overlay}
 				onClick={close}
 			/>
-			<div style={modal}>
-				<video
-					controls
-					src={`https://www.youtube.com/watch?v=${video?.key}`}
-					className="modal__video"></video>
+			<div style={modal} className='modal'>
+				<iframe src={`https://www.youtube.com/embed/${video?.key}?autoplay=1&controls=0&origin=http://localhost:5173`} typeof="text/html" frameBorder={0} className='modal__iframe'/>
+				
 				<div className="modalBottom">
 					<div className="modal__movie-details">
 						<p className="modal__movie-title">{content.title}</p>
-						<p className="modal__movie-info"> More Info.</p>
+						<Link to={`/movie/${content.id}`} className="modal__movie-info"> More Info</Link>
 					</div>
 					<div className="features">
 						<span className="ageRate">{content.vote_average.toFixed(1)}</span>
@@ -78,8 +77,10 @@ const modal = {
 	transform: "translate(-50%,-50%)",
 	backgroundColor: "#141414",
 	padding: "10px",
+	display:"flex",
+	flexDirection:"column",
+	justifyContent:'space-between',
 	zIndex: 1000,
-	width: "80%",
 	borderRadius: "8px",
 } as React.CSSProperties;
 
