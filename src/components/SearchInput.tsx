@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { ReactComponent as SearchIcon } from "../assets/svg/search.svg";
+import { ReactComponent as Load } from "../assets/svg/load.svg";
 import { searchForMovies } from "../../utils/dataFetching";
 import { SeachedContent } from "../context/searchContext";
 import { Movies } from "../../typings";
@@ -11,14 +12,15 @@ type Props = {
 
 const SearchInput = () => {
 	const [text, setText] = useState<string>("");
+	const [loading, setLoading] = useState(false)
 
-	const { setSearchContext } = useContext(SeachedContent) as Props;
-
+	const { setSearchContext,searchContext } = useContext(SeachedContent) as Props;
+	
 
 	// Handle the Search Request
 	const handleSearch = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
-
+		setLoading(true)
 		if (text.length >= 2) {
 			// if the input text is atleast 2 characters
 			const res = await searchForMovies(text);
@@ -32,6 +34,7 @@ const SearchInput = () => {
 						: 0
 				);
 				setSearchContext(sorted);
+				setLoading(false)
 			}
 		} else if (text.length < 2) {
 			// If the input text is less than 2 characters
@@ -51,7 +54,7 @@ const SearchInput = () => {
 				className="search__input"
 			/>
 			<span onClick={handleSearch}>
-				<SearchIcon className="searchIcon" />
+				{loading ? <Load className='loadsvg'/>  : <SearchIcon className="searchIcon" />}
 			</span>
 		</form>
 	);

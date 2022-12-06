@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import WaitingState from "../components/WaitingState";
 
 const SearchedMovie = lazy(() => import("./SearchedMovie"));
 const Home = lazy(() => import("./Home"));
@@ -8,7 +9,7 @@ const Movie = lazy(() => import("./MovieDetail"));
 
 const AllPages = () => {
 	return (
-		<Suspense fallback={<p>Loading...</p>}>
+		<Suspense fallback={<WaitingState/>}>
 			<Routes>
 				<Route
 					path="/"
