@@ -1,10 +1,15 @@
 import { createPortal } from "react-dom";
 import { useEffect, useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 // Typing
 import { DetailedMovie, Video } from "../../typings";
+import { ReactComponent as AddIcon } from "../assets/svg/addWhite.svg";
 // Utilities
-import { getFullDetailOfMovie, MovieVideo } from "../../utils/dataFetching";
+import {
+	getFullDetailOfMovie,
+	MovieVideo,
+	saveToFavorite,
+} from "../../utils/dataFetching";
 
 type Props = {
 	open: boolean;
@@ -13,7 +18,6 @@ type Props = {
 };
 
 const Modal = ({ open, close, id }: Props) => {
-
 	const [content, setContent] = useState<DetailedMovie | undefined>();
 	const [video, setVideo] = useState<Video | undefined>();
 
@@ -26,7 +30,6 @@ const Modal = ({ open, close, id }: Props) => {
 			return;
 		};
 		fetchData();
-
 	}, []);
 
 	if (!open) return null;
@@ -34,19 +37,35 @@ const Modal = ({ open, close, id }: Props) => {
 		return <p>Loading.....</p>;
 	}
 
+	const handleClick = () => {
+		saveToFavorite(content);
+	};
+
 	return createPortal(
 		<>
 			<div
 				style={overlay}
 				onClick={close}
 			/>
-			<div style={modal} className='modal'>
-				<iframe src={`https://www.youtube.com/embed/${video?.key}?autoplay=1&controls=0&origin=http://localhost:5173`} typeof="text/html" frameBorder={0} className='modal__iframe'/>
-				
+			<div
+				style={modal}
+				className="modal">
+				<iframe
+					src={`https://www.youtube.com/embed/${video?.key}?autoplay=1&controls=0&origin=http://localhost:5173`}
+					typeof="text/html"
+					frameBorder={0}
+					className="modal__iframe"
+				/>
+
 				<div className="modalBottom">
 					<div className="modal__movie-details">
 						<p className="modal__movie-title">{content.title}</p>
-						<Link to={`/movie/${content.id}`} className="modal__movie-info"> More Info</Link>
+						<Link
+							to={`/movie/${content.id}`}
+							className="modal__movie-info">
+							{" "}
+							More Info
+						</Link>
 					</div>
 					<div className="features">
 						<span className="ageRate">{content.vote_average.toFixed(1)}</span>
@@ -54,6 +73,9 @@ const Modal = ({ open, close, id }: Props) => {
 							{content.adult ? "18+" : 16}
 						</span>
 						<span className="quality">HD</span>
+						<span>
+							<AddIcon onClick={handleClick} />
+						</span>
 					</div>
 					<p className="modal__overview">{content.overview}</p>
 					<div className="genre">
@@ -77,9 +99,9 @@ const modal = {
 	transform: "translate(-50%,-50%)",
 	backgroundColor: "#141414",
 	padding: "10px",
-	display:"flex",
-	flexDirection:"column",
-	justifyContent:'space-between',
+	display: "flex",
+	flexDirection: "column",
+	justifyContent: "space-between",
 	zIndex: 1000,
 	borderRadius: "8px",
 } as React.CSSProperties;

@@ -8,16 +8,17 @@ import {
 } from "../../utils/dataFetching";
 
 type Props = {
-	category: "popular" | "trending" | "series" | "now playing";
+	category: "popular" | "trending" | "series" | "now playing" | "my list";
 };
 
 const ListOfMoviesComponent = ({ category }: Props) => {
 	const [result, setResult] = useState<Movies[] | undefined>();
+
 	useEffect(() => {
 		let mounted = true;
 		/** Async function that awaits the function recieved*/
 		const wait: (func: Function) => Promise<void> = async (func) => {
-			const res:Movies[]= await func();
+			const res: Movies[] = await func();
 			setResult(res);
 		};
 
@@ -43,6 +44,16 @@ const ListOfMoviesComponent = ({ category }: Props) => {
 		};
 	}, []);
 
+	useEffect(() => {
+		const getData = localStorage.getItem("List");
+		if (getData) {
+			const res: Movies[] = JSON.parse(getData);
+			const result: Movies[] = Object.values(
+				res.reduce((acc, obj) => ({ ...acc, [obj.id]: obj }), {})
+			);
+			setResult(result);
+		}
+	}, []);
 	return (
 		<div className="listofmovies">
 			<h1 className="category__header">{category}</h1>

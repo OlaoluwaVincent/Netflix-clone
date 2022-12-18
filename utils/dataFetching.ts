@@ -3,7 +3,7 @@ import { DetailedMovie, Movies, Video } from '../typings'
 // MOVIES Functions
 
 /** This returns a DetailedMovie Object */
-export const getFullDetailOfMovie: (props:number) => Promise<DetailedMovie | undefined>  = async (id) => {
+export const getFullDetailOfMovie: (props: number) => Promise<DetailedMovie | undefined> = async (id) => {
     try {
         const res = await fetch(
             `https://api.themoviedb.org/3/movie/${id}?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US`
@@ -29,7 +29,7 @@ export const getLatestMovie: () => Promise<Movies | undefined> = async () => {
 };
 
 /**Returns a Promise[ ] of Popular Movies  */
-export const getPopularMovies:()=>Promise<Movies[] | undefined> = async () => {
+export const getPopularMovies: () => Promise<Movies[] | undefined> = async () => {
     try {
         const res = await fetch(
             "https://api.themoviedb.org/3/movie/popular?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US&page=1"
@@ -42,7 +42,7 @@ export const getPopularMovies:()=>Promise<Movies[] | undefined> = async () => {
 };
 
 /**Returns a Promise[ ] of Movies Playing currently in theaters  */
-export const getNowPlayingMovies:()=>Promise<Movies[] | undefined> = async () => {
+export const getNowPlayingMovies: () => Promise<Movies[] | undefined> = async () => {
     try {
         const res = await fetch(
             "https://api.themoviedb.org/3/movie/now_playing?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US&page=1"
@@ -61,7 +61,7 @@ export const getTopRatedMovie: () => Promise<Movies[] | undefined> = async () =>
             "https://api.themoviedb.org/3/movie/top_rated?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US&page=1&"
         );
         const data = await res.json();
-        return  data.results.slice(0, 10);;
+        return data.results.slice(0, 10);;
     } catch (error) {
         console.log(error);
     }
@@ -113,10 +113,10 @@ export const searchForMovies: (query: string) => Promise<Movies[] | undefined> =
 // VIDEO
 
 /**Returns a Video(Promise) base of the movieId and retuns a Video object  */
-export const MovieVideo:(movieId: number) => Promise<Video | undefined> = async (movieId:number) => {
+export const MovieVideo: (movieId: number) => Promise<Video | undefined> = async (movieId: number) => {
     // Region can be specified
     try {
-        const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US` );
+        const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=f5ea505f0d7d67fe191c61ef531b8428&language=en-US`);
         const data = await res.json();
         return data.results![1];
     } catch (error) {
@@ -129,7 +129,7 @@ export const MovieVideo:(movieId: number) => Promise<Video | undefined> = async 
 
 // SERIES
 
-export const getLatestSerie:() => Promise<Movies | undefined>  = async () => {
+export const getLatestSerie: () => Promise<Movies | undefined> = async () => {
     // Region can be specified
     try {
         const res = await fetch(
@@ -144,3 +144,15 @@ export const getLatestSerie:() => Promise<Movies | undefined>  = async () => {
 
 
 // f5ea505f0d7d67fe191c61ef531b8428
+
+export const saveToFavorite = (data: Movies) => {
+    const existingEntries = JSON.parse(localStorage.getItem("List") || '[]');
+
+    if (!existingEntries.includes(data)) {
+        existingEntries.push(data);
+        localStorage.setItem("List", JSON.stringify(existingEntries));
+    } else {
+        // or tell user it's already there
+        console.log(data + ' already exists')
+    }
+}

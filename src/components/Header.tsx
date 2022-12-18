@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className='header'>
         <nav className='header__nav'>
-            <Link to={'/'} className='header__link'>
+            <Link to={'/home'} className='header__link'>
                 <img src={Logo} alt="" />
             </Link>
             <Link to={'#'} className='header__link'>
@@ -16,7 +16,7 @@ const Header = () => {
             <Link to={'#'} className='header__link'>
                 Movies
             </Link>
-            <Link to={'#'} className='header__link'>
+            <Link to={'/mylist'} className='header__link'>
                 My Lists
             </Link>
             <Link to={'/search'} className='header__link'>

@@ -172,7 +172,7 @@ img {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  top: 50px;
+  top: 20px;
   padding: 0 5%;
   max-height: 80px;
 }
@@ -212,6 +212,12 @@ img {
   position: relative;
   overflow: hidden;
 }
+.homepage__video {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
 
 .homepage__image::after{
   content: '';
@@ -222,10 +228,16 @@ img {
   position: absolute;
   overflow: hidden;
 }
+
 .homepage__img {
   display: block;
   height: 100%;
   width: 100%;
+}
+
+.homeFrame{
+  width: 100%;
+  height: 100%;
 }
 
 .homepage__trending {
@@ -414,7 +426,7 @@ img {
 }
 
 .searchPage {
-  padding-top: 20px;
+  padding-top: 80px;
   min-height: 100vh;
   width: 100%;
   margin: 0 auto;
@@ -507,8 +519,29 @@ img {
 .moviePage {
   height: 100vh;
   min-height: 100vh;
+  max-width: 100vw;
 }
 
+.empty{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+.empty-heading{
+  position: absolute;
+  top: 100px;
+  text-align: center;
+}
+
+.listpage{
+  padding-top: 80px;
+}
 
 
 @media (prefers-color-scheme: light) {

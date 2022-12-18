@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import WaitingState from "../components/WaitingState";
+import MyList from "./MyList";
 
 const SearchedMovie = lazy(() => import("./SearchedMovie"));
 const Home = lazy(() => import("./Home"));
@@ -26,6 +27,10 @@ const AllPages = () => {
 				<Route
 					path="/movie/:id"
 					element={<Movie />}
+				/>
+				<Route
+					path="/mylist"
+					element={<MyList />}
 				/>
 			</Routes>
 		</Suspense>

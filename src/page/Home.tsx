@@ -1,17 +1,17 @@
-import { useEffect, useState, } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import Actions from "../components/Actions";
 import ListOfMoviesComponent from "../components/ListOfMoviesComponent";
 // Utilities
-import { getLatestMovie, getPopularMovies } from "../../utils/dataFetching";
+import { getPopularMovies } from "../../utils/dataFetching";
 // TYPINGS
-import { Movies } from "../../typings";
-
+import { Movies, Video } from "../../typings";
 
 const Home = () => {
 	const [result, setResult] = useState<Movies | undefined>();
+	const [video, setVideo] = useState<Video | undefined>();
 	const { loggedInUser } = useParams();
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -34,28 +34,41 @@ const Home = () => {
 		};
 	}, [loggedInUser]);
 
-	
-	if(!result){
-		return <p className="loading">Loading...</p>
+	if (!result) {
+		return <p className="loading">Loading...</p>;
 	}
 
-	
 	return (
 		<div className="homepage">
-			<Header />
 			{result && (
-				<div className="homepage__image">
+				<div className={`${video ? "homepage__video" : " homepage__image"}`}>
 					<div className="homepage__img">
-						<img
-							src={!result.poster_path? `https://image.tmdb.org/t/p/original/${result.poster_path}`: `https://image.tmdb.org/t/p/original/${result.backdrop_path}`}
-							alt={result.title}
-						/>
+						{video ? (
+							<iframe
+								src={`https://www.youtube.com/embed/${video?.key}?autoplay=0&controls=0&origin=http://localhost:5173`}
+								typeof="text/html"
+								className="homeFrame"
+							/>
+						) : (
+							<img
+								src={
+									!result.poster_path
+										? `https://image.tmdb.org/t/p/original/${result.poster_path}`
+										: `https://image.tmdb.org/t/p/original/${result.backdrop_path}`
+								}
+								alt={result.title}
+							/>
+						)}
 					</div>
 
 					<p className="homepage__trending">#1 Trending- {result.title}</p>
 				</div>
 			)}
-			<Actions />
+			<Actions
+				movie={result}
+				setVideo={setVideo}
+			/>
+			<ListOfMoviesComponent category="my list" />
 			<ListOfMoviesComponent category="popular" />
 			<ListOfMoviesComponent category="trending" />
 			<ListOfMoviesComponent category="now playing" />
