@@ -14,8 +14,6 @@ const LocalStorageData = () => {
 		SeachedContent
 	) as localProps;
 
-	const [load, setLoad] = useState(false);
-
 	useEffect(() => {
 		saveToFavorite();
 	}, []);

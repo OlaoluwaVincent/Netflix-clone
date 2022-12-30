@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 type Props = {
 	searchContext: Movies[];
 	localStore: Movies[];
+	loggedInUser: string | undefined;
 	/** this is used for direct change, use '(( )=>void)' if you will be mutating*/
 	setSearchContext: React.Dispatch<React.SetStateAction<Movies[]>>;
 	setLocalStore: React.Dispatch<React.SetStateAction<Movies[]>>;
 	setLoggedInUser: (value: React.SetStateAction<string | undefined>) => void;
-	loggedInUser: string | undefined;
 	saveToFavorite: (data?: Movies) => void;
 };
 
@@ -28,9 +28,6 @@ const SearchContextComponent = ({ children }: any) => {
 		return filtered;
 	};
 
-	// useEffect(() => {
-
-	// }, []);
 	/** Adding and Fetching Data to or from the Localstorage */
 	const saveToFavorite = (data?: Movies) => {
 		// get the data from the sysem LocalStorage
@@ -47,12 +44,6 @@ const SearchContextComponent = ({ children }: any) => {
 			localStorage.setItem('List', JSON.stringify(updatedData));
 		}
 	};
-
-	// const userLoggedIn = (userName: string) => {
-	// 	if (userName) {
-	// 		setLoggedInUser(userName);
-	// 	}
-	// };
 
 	return (
 		<SeachedContent.Provider
