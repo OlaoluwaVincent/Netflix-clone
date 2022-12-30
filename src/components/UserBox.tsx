@@ -1,14 +1,28 @@
-import {Link} from 'react-router-dom'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { SeachedContent } from '../context/searchContext';
 
-type Props = {userName:string}
+type Props = { userName: string };
 
-const UserBox = ({userName}: Props) => {
+type UserProps = {
+	setLoggedInUser: (value: React.SetStateAction<string | undefined>) => void;
+	loggedInUser: string | undefined;
+};
 
-  return (
-    <Link to={`/${userName}`} className="userBox">
-        <p>{userName}</p>
-    </Link>
-  )
-}
+const UserBox = ({ userName }: Props) => {
+	const { loggedInUser, setLoggedInUser } = useContext(
+		SeachedContent
+	) as UserProps;
 
-export default UserBox
+	return (
+		<Link
+			to={`/`}
+			className='userBox'
+			onClick={() => setLoggedInUser(userName)}
+		>
+			<p>{userName}</p>
+		</Link>
+	);
+};
+
+export default UserBox;

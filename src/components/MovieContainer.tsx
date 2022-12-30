@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Movies } from "../../typings";
-import Modal from "./Modal";
+import { useState } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Movies } from '../../typings';
+import Modal from './Modal';
 type Props = {
 	movie: Movies;
 };
 
 const MovieContainer = ({ movie }: Props) => {
 	const [isOpen, setIsOPen] = useState(false);
-	
+
 	// Close Modal
 	const onClose = () => {
 		setIsOPen(false);
@@ -16,26 +16,23 @@ const MovieContainer = ({ movie }: Props) => {
 	const handleMovieClick = () => {
 		// What happens when a movie card is clicked?
 		// It opens a MODAL...
-			setIsOPen(true);
+		setIsOPen(true);
 	};
 
 	return (
 		<>
-			<div
-				className="movie"
-				onClick={handleMovieClick}>
-
+			<div className='movie' onClick={handleMovieClick}>
 				<LazyLoadImage
-					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+					src={
+						movie.poster_path
+							? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+							: `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+					}
 					alt={movie.original_title}
-					className="movie__img"
+					className='movie__img'
 				/>
 			</div>
-			<Modal
-				close={onClose}
-				open={isOpen}
-				id={movie.id}
-			/>
+			<Modal close={onClose} open={isOpen} id={movie.id} />
 		</>
 	);
 };

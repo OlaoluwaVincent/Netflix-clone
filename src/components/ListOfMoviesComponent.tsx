@@ -1,36 +1,46 @@
-import { useState, useEffect } from "react";
-import { Movies } from "../../typings";
-import MovieContainer from "./MovieContainer";
+import { useState, useEffect, useContext } from 'react';
+import { Movies } from '../../typings';
+import MovieContainer from './MovieContainer';
 import {
 	getPopularMovies,
 	getTrendingMovies,
 	getNowPlayingMovies,
-} from "../../utils/dataFetching";
+} from '../../utils/dataFetching';
+import { SeachedContent } from '../context/searchContext';
 
 type Props = {
-	category: "popular" | "trending" | "series" | "now playing" | "my list";
+	category: 'popular' | 'trending' | 'series' | 'now playing' | 'my list';
+};
+type localProps = {
+	localStore: Movies[];
+	setLocalStore: React.Dispatch<React.SetStateAction<Movies[]>>;
+	saveToFavorite: (data: Movies) => void;
 };
 
 const ListOfMoviesComponent = ({ category }: Props) => {
 	const [result, setResult] = useState<Movies[] | undefined>();
+	const { localStore, setLocalStore } = useContext(
+		SeachedContent
+	) as localProps;
+
+	/** Async function that awaits the function recieved*/
 
 	useEffect(() => {
-		let mounted = true;
-		/** Async function that awaits the function recieved*/
 		const wait: (func: Function) => Promise<void> = async (func) => {
 			const res: Movies[] = await func();
 			setResult(res);
 		};
+		let mounted = true;
 
 		if (mounted) {
 			switch (category) {
-				case "popular":
+				case 'popular':
 					wait(getPopularMovies);
 					break;
-				case "trending":
+				case 'trending':
 					wait(getTrendingMovies);
 					break;
-				case "now playing":
+				case 'now playing':
 					wait(getNowPlayingMovies);
 					break;
 
@@ -44,20 +54,10 @@ const ListOfMoviesComponent = ({ category }: Props) => {
 		};
 	}, []);
 
-	useEffect(() => {
-		const getData = localStorage.getItem("List");
-		if (getData) {
-			const res: Movies[] = JSON.parse(getData);
-			const result: Movies[] = Object.values(
-				res.reduce((acc, obj) => ({ ...acc, [obj.id]: obj }), {})
-			);
-			setResult(result);
-		}
-	}, []);
 	return (
-		<div className="listofmovies">
-			<h1 className="category__header">{category}</h1>
-			<div className="movies">
+		<div className='listofmovies'>
+			<h1 className='category__header'>{category}</h1>
+			<div className='movies'>
 				{result &&
 					result.map((movies) => (
 						<MovieContainer
