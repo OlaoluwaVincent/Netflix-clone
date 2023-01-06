@@ -198,6 +198,7 @@ img {
 
 .designer {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-align: center;
 }
 
 .header__nav {
@@ -252,7 +253,7 @@ img {
 
 .homepage__image {
 	width: 100%;
-	height: 80vh;
+	height: 40vh;
 	position: relative;
 	overflow: hidden;
 }
@@ -375,7 +376,7 @@ img {
 
 .movie {
 	height: 160px;
-	width: 100px;
+	width: 120px;
 	cursor: pointer;
 	overflow: hidden;
 	border-radius: 10px;
@@ -676,6 +677,9 @@ img {
 	.header__nav {
 		padding: 0 10%;
 	}
+	.homepage__image {
+		height: 80vh;
+	}
 	.homepage__trending {
 		font-size: 24px;
 	}
@@ -715,6 +719,7 @@ img {
 	.movies {
 		gap: 16px;
 	}
+
 	.movie {
 		width: 220px;
 		height: 300px;

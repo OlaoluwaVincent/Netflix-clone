@@ -119,20 +119,32 @@ const MovieDetail = () => {
 				<div className='moviePage__detail-content'>
 					<span>{data.release_date}</span>
 					<span className='hd'>HD</span>
-					<div className='genre'>
-						{data.genres.map((genre) => (
-							<span key={genre.id}>{genre.name}</span>
-						))}
-					</div>
 					<AddIcon onClick={() => saveToFavorite(data)} />
 				</div>
-				<button
-					type='button'
-					className='moviePage__play-button'
-					onClick={playMovie}
-				>
-					Play
-				</button>
+				<div className='genre'>
+					{data.genres.map((genre) => (
+						<span key={genre.id}>{genre.name}</span>
+					))}
+				</div>
+				{!video ? (
+					<button
+						type='button'
+						className='moviePage__play-button'
+						onClick={playMovie}
+					>
+						Play
+					</button>
+				) : (
+					<button
+						type='button'
+						className='moviePage__play-button'
+						style={{ background: 'black', color: 'whitesmoke' }}
+						onClick={() => setVideo(undefined)}
+					>
+						Pause
+					</button>
+				)}
+
 				<div className='moviePage__full-details'>{data.overview}</div>
 				{cast.length > 1 && (
 					<div className='moviePage__cast-crew'>
