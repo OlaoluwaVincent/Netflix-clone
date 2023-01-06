@@ -259,7 +259,7 @@ img {
 }
 .homepage__video {
 	width: 100%;
-	height: 80vh;
+	height: 40vh;
 	position: relative;
 	overflow: hidden;
 }
@@ -651,7 +651,6 @@ img {
 	border: none;
 	border-radius: 3px;
 	padding: 8px 0;
-	margin-bottom: 20px;
 }
 
 .moviePage__full-details {

@@ -61,7 +61,7 @@ const Home = () => {
 					</p>
 				</div>
 			)}
-			<Actions movie={result} setVideo={setVideo} />
+			<Actions movie={result} video={video} setVideo={setVideo} />
 			<div className='homeContainer'>
 				<LocalStorageData />
 				<ListOfMoviesComponent category='popular' />
