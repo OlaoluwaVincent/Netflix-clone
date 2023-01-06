@@ -5,11 +5,13 @@ import {
 	getPopularMovies,
 	getTrendingMovies,
 	getNowPlayingMovies,
+	getTopRatedMovie,
+	getLatestSerie,
+	getLatestSeries,
 } from '../../utils/dataFetching';
-import { SeachedContent } from '../context/searchContext';
 
 type Props = {
-	category: 'popular' | 'trending' | 'series' | 'now playing' | 'my list';
+	category: 'popular' | 'trending' | 'series' | 'now playing' | 'top rated';
 };
 type localProps = {
 	localStore: Movies[];
@@ -19,9 +21,6 @@ type localProps = {
 
 const ListOfMoviesComponent = ({ category }: Props) => {
 	const [result, setResult] = useState<Movies[] | undefined>();
-	const { localStore, setLocalStore } = useContext(
-		SeachedContent
-	) as localProps;
 
 	/** Async function that awaits the function recieved*/
 
@@ -43,7 +42,10 @@ const ListOfMoviesComponent = ({ category }: Props) => {
 				case 'now playing':
 					wait(getNowPlayingMovies);
 					break;
-
+				case 'top rated':
+					wait(getTopRatedMovie);
+				case 'series':
+					wait(getLatestSeries);
 				default:
 					break;
 			}

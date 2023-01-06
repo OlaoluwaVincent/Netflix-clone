@@ -6,6 +6,7 @@ import { ReactComponent as PlayIcon } from '../assets/svg/play.svg';
 import { ReactComponent as Empty } from '../assets/svg/void.svg';
 import { SeachedContent } from '../context/searchContext';
 import { useEffect } from 'react';
+import MovieContainer from '../components/MovieContainer';
 
 type Props = {
 	localStore: Movies[];
@@ -24,7 +25,7 @@ const MyList = () => {
 	};
 
 	return (
-		<div className='listpage'>
+		<div className='page'>
 			{localStore.length < 1 ? (
 				<div className='empty'>
 					<h1 className='empty-heading'>
@@ -34,29 +35,18 @@ const MyList = () => {
 				</div>
 			) : (
 				<div className='searchedMovies'>
-					{localStore.map((movie) => (
-						<div
-							key={movie.id}
-							className='searchedMovie'
-							onClick={() => handleMovieClick(movie)}
-						>
-							<LazyLoadImage
-								className='searchImage'
-								src={
-									movie.backdrop_path === null
-										? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-										: `https://image.tmdb.org/t/p/original${movie.poster_path}`
-								}
-								alt={movie.original_title}
-							/>
-							<p className='searchTitle'>
-								{movie.original_title || movie.original_name}{' '}
-								<br></br> <span>{movie.release_date}</span>
-							</p>
-							<p>{movie.id}</p>
-							<PlayIcon className='playIcon' />
+					<div className='listofmovies'>
+						<h1 className='category__header'>My List</h1>
+						<div className='movies'>
+							{localStore &&
+								localStore.map((movies) => (
+									<MovieContainer
+										key={`${movies.id}-${movies.title}`}
+										movie={movies}
+									/>
+								))}
 						</div>
-					))}
+					</div>
 				</div>
 			)}
 		</div>

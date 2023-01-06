@@ -9,12 +9,9 @@ const Header = () => {
 				<Link to={'/'} className='header__link'>
 					<img src={Logo} alt='' />
 				</Link>
-				<Link to={'#'} className='header__link'>
-					TV Shows
-				</Link>
-				<Link to={'/movies'} className='header__link'>
-					Movies
-				</Link>
+				<p className='designer header__link'>
+					Designed by: Olaoluwa.dev@gmail.com
+				</p>
 				<Link to={'/mylist'} className='header__link'>
 					My Lists
 				</Link>

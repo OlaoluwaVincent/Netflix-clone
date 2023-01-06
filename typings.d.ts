@@ -40,3 +40,46 @@ interface Video {
 	key: string;
 	official: boolean;
 }
+
+export interface Single_Movie {
+	adult: boolean;
+	backdrop_path: string;
+	genres: {
+		id: number;
+		name: string;
+	};
+	id: number;
+	original_title: string;
+	overview: string;
+	poster_path: string;
+	production_companies: {
+		id: number;
+		logo_path: string;
+		name: string;
+		origin_country: string;
+	};
+	release_date: string;
+	spoken_languages: {
+		english_name: string;
+		name: string;
+	};
+	status: string;
+	title: string;
+	vote_average: number;
+	vote_count: number;
+}
+
+export interface Cast {
+	adult: boolean;
+	cast_id: number;
+	character: string;
+	credit_id: string;
+	gender: number;
+	id: number;
+	known_for_department: string;
+	name: string;
+	order: number;
+	original_name: string;
+	popularity: number;
+	profile_path: srting;
+}

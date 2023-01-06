@@ -62,10 +62,13 @@ const Home = () => {
 				</div>
 			)}
 			<Actions movie={result} setVideo={setVideo} />
-			<LocalStorageData />
-			<ListOfMoviesComponent category='popular' />
-			<ListOfMoviesComponent category='trending' />
-			<ListOfMoviesComponent category='now playing' />
+			<div className='homeContainer'>
+				<LocalStorageData />
+				<ListOfMoviesComponent category='popular' />
+				<ListOfMoviesComponent category='trending' />
+				<ListOfMoviesComponent category='now playing' />
+				<ListOfMoviesComponent category='series' />
+			</div>
 		</div>
 	);
 };

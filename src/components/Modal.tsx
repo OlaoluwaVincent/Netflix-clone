@@ -33,8 +33,11 @@ const Modal = ({ open, close, id }: Props) => {
 			setContent(data);
 			return;
 		};
-		fetchData();
-	}, []);
+		if (open) {
+			// This will only run when the modal is opened else it will always run
+			fetchData();
+		}
+	}, [open]);
 
 	if (!open) return null;
 
@@ -49,7 +52,7 @@ const Modal = ({ open, close, id }: Props) => {
 	return createPortal(
 		<>
 			<div style={overlay} onClick={close} />
-			<div style={modal} className='modal'>
+			<div style={modal} className='modal puff-in-center'>
 				<iframe
 					src={`https://www.youtube.com/embed/${video?.key}?autoplay=1&controls=0&origin=http://localhost:5173`}
 					typeof='text/html'
@@ -103,7 +106,7 @@ const modal = {
 	position: 'fixed',
 	top: '50%',
 	left: '50%',
-	transform: 'translate(-50%,-50%)',
+	translate: '-50% -50%',
 	backgroundColor: '#141414',
 	padding: '10px',
 	display: 'flex',

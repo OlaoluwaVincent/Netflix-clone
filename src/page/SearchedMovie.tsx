@@ -39,33 +39,28 @@ const SearchedMovie = () => {
 	const options = () => (
 		<div style={styleDiv}>
 			{filt.map((title) => (
-				<button style={styledButton} onClick={() => filterItem(title)}>
+				<button
+					key={title}
+					style={styledButton}
+					onClick={() => filterItem(title)}
+				>
 					{title}
 				</button>
 			))}
-			<button
-				onClick={() => setMovies(searchContext)}
-				style={styledButton}
-			>
-				All{' '}
-				<span
-					style={{
-						background: 'lightgrey',
-						padding: '3px',
-						borderRadius: '50%',
-						fontSize: '70%',
-						color: 'black',
-					}}
+			{filt.length >= 2 && (
+				<button
+					onClick={() => setMovies(searchContext)}
+					style={styledButton}
 				>
-					{searchContext.length}
-				</span>
-			</button>
+					All <span style={spanStyle}>{searchContext.length}</span>
+				</button>
+			)}
 		</div>
 	);
 
 	return (
 		<>
-			<div className='searchPage'>
+			<div className='searchPage page'>
 				<SearchInput />
 				<div className='searchedMovies'>
 					{options()}
@@ -108,6 +103,7 @@ const styleDiv = {
 	gap: '30px',
 	width: '100%',
 	paddingLeft: '20px',
+	marginBottom: '20px',
 } as React.CSSProperties;
 
 const styledButton = {
@@ -121,4 +117,16 @@ const styledButton = {
 	justifyContent: 'center',
 	alignItems: 'center',
 	gap: '8px',
+} as React.CSSProperties;
+
+const spanStyle = {
+	background: 'lightgrey',
+	height: '20px',
+	width: '20px',
+	borderRadius: '50%',
+	fontSize: '70%',
+	color: 'black',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
 } as React.CSSProperties;
