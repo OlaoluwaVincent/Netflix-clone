@@ -169,16 +169,25 @@ img {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: 50px;
+	gap: 10px;
 	align-items: center;
 	width: 100%;
-	height: 100vh;
+	max-height: 100vh;
+	overflow: auto;
+}
+
+.userBoxes {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
 }
 
 .userBox {
 	background: var(--midgray);
 	height: 100px;
 	width: 100px;
+	min-height: 100px;
+	min-width: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -199,6 +208,8 @@ img {
 .designer {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	text-align: center;
+	top: 0;
+	position: sticky;
 }
 
 .header__nav {
@@ -208,7 +219,7 @@ img {
 	align-items: center;
 	width: 100%;
 	top: 20px;
-	padding: 0 10px;
+	padding: 0 20px;
 	max-height: 80px;
 }
 
@@ -450,6 +461,7 @@ img {
 .genre {
 	display: flex;
 	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .genre > span {
@@ -545,7 +557,6 @@ img {
 	display: flex;
 	flex-direction: column;
 	font-size: 12px;
-	min-height: 100vh;
 }
 
 .searchMovies__categories {
@@ -664,19 +675,50 @@ img {
 	color: var(--gray);
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		color: #213547;
-		background-color: #ffffff;
-	}
+.intro {
+	display: grid;
+	grid-template-columns: 20px auto 20px;
 }
 
+.intro-header {
+	font-size: 16px !important;
+	text-align: center;
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	margin-top: 20px;
+	color: var(--white);
+}
+
+.intro-header,
+.intro-body,
+.intro-info {
+	grid-column: 2/3;
+	font-size: 13px;
+	margin-bottom: 10px;
+}
+
+.intro-info > ul > b {
+	font-size: 14px;
+}
+
+.intro-info > ul > li {
+	font-size: 13px;
+	margin-left: 20px;
+}
+
+.header__search-icon {
+	height: 20px;
+	width: 20px;
+}
 /* Applies when width is greater than 480px */
 @media screen and (min-width: 480px) {
 	.header__nav {
 		padding: 0 10%;
 	}
 	.homepage__image {
+		height: 80vh;
+	}
+	.homepage__video {
 		height: 80vh;
 	}
 	.homepage__trending {
@@ -697,12 +739,14 @@ img {
 			'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	}
 
-	.usersContainer {
-		flex-direction: row;
+	.userBoxes {
+		display: flex;
+		gap: 50px;
 	}
+
 	.userBox {
-		height: 200px;
-		width: 200px;
+		height: 150px;
+		width: 150px;
 		font-size: 120%;
 	}
 	.homepage__img > img {
@@ -757,6 +801,30 @@ img {
 		display: block;
 	}
 	.searchContainer > input {
+		font-size: 16px;
+	}
+
+	.intro {
+		display: grid;
+		grid-template-columns: 20px auto 20px;
+	}
+
+	.intro-header {
+		font-size: 24px !important;
+	}
+
+	.intro-header,
+	.intro-body,
+	.intro-info {
+		grid-column: 1/-1;
+		font-size: 16px;
+	}
+
+	.intro-info > ul > b {
+		font-size: 18px;
+	}
+
+	.intro-info > ul > li {
 		font-size: 16px;
 	}
 }

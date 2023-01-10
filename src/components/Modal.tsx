@@ -20,7 +20,7 @@ type localProps = {
 };
 
 const Modal = ({ open, close, id }: Props) => {
-	const [content, setContent] = useState<DetailedMovie | undefined>();
+	const [content, setContent] = useState<DetailedMovie>();
 	const [video, setVideo] = useState<Video | undefined>();
 
 	const { saveToFavorite } = useContext(SeachedContent) as localProps;
@@ -41,60 +41,61 @@ const Modal = ({ open, close, id }: Props) => {
 
 	if (!open) return null;
 
-	if (!content) {
-		return <p>Loading.....</p>;
-	}
-
-	const handleClick = () => {
-		saveToFavorite(content);
-	};
-
 	return createPortal(
 		<>
 			<div style={overlay} onClick={close} />
-			<div style={modal} className='modal puff-in-center'>
-				<iframe
-					src={`https://www.youtube.com/embed/${video?.key}?autoplay=1&controls=0&origin=http://localhost:5173`}
-					typeof='text/html'
-					frameBorder={0}
-					className='modal__iframe'
-				/>
+			{!content ? (
+				<p className='modal puff-in-center'>Loading...</p>
+			) : (
+				<div style={modal} className='modal puff-in-center'>
+					<iframe
+						src={`https://www.youtube.com/embed/${video?.key}?autoplay=1&controls=0&origin=http://localhost:5173`}
+						typeof='text/html'
+						frameBorder={0}
+						className='modal__iframe'
+					/>
 
-				<div className='modalBottom'>
-					<div className='modal__movie-details'>
-						<p className='modal__movie-title'>{content.title}</p>
-						<Link
-							to={`/movie/${content.id}`}
-							className='modal__movie-info'
-						>
-							{' '}
-							More Info
-						</Link>
-					</div>
-					<div className='features'>
-						<span className='ageRate'>
-							{content.vote_average.toFixed(1)}
-						</span>
-						<span
-							className={`ageRate ${
-								content.adult ? 'adult' : 'young'
-							}`}
-						>
-							{content.adult ? '18+' : 16}
-						</span>
-						<span className='quality'>HD</span>
-						<span>
-							<AddIcon style={hover} onClick={handleClick} />
-						</span>
-					</div>
-					<p className='modal__overview'>{content.overview}</p>
-					<div className='genre'>
-						{content.genres.map((genre) => (
-							<span key={genre.id}>{genre.name}</span>
-						))}
+					<div className='modalBottom'>
+						<div className='modal__movie-details'>
+							<p className='modal__movie-title'>
+								{content.title}
+							</p>
+							<Link
+								to={`/movie/${content.id}`}
+								className='modal__movie-info'
+							>
+								{' '}
+								More Info
+							</Link>
+						</div>
+						<div className='features'>
+							<span className='ageRate'>
+								{content.vote_average.toFixed(1)}
+							</span>
+							<span
+								className={`ageRate ${
+									content.adult ? 'adult' : 'young'
+								}`}
+							>
+								{content.adult ? '18+' : 16}
+							</span>
+							<span className='quality'>HD</span>
+							<span>
+								<AddIcon
+									style={hover}
+									onClick={() => saveToFavorite(content)}
+								/>
+							</span>
+						</div>
+						<p className='modal__overview'>{content.overview}</p>
+						<div className='genre'>
+							{content.genres.map((genre) => (
+								<span key={genre.id}>{genre.name}</span>
+							))}
+						</div>
 					</div>
 				</div>
-			</div>
+			)}
 		</>,
 		document.getElementById('modal') as HTMLElement
 	);

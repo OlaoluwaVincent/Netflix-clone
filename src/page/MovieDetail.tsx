@@ -121,7 +121,7 @@ const MovieDetail = () => {
 					<span className='hd'>HD</span>
 					<AddIcon onClick={() => saveToFavorite(data)} />
 				</div>
-				<div className='genre'>
+				<div className='genre' style={{ marginBottom: '10px' }}>
 					{data.genres.map((genre) => (
 						<span key={genre.id}>{genre.name}</span>
 					))}
@@ -130,6 +130,7 @@ const MovieDetail = () => {
 					<button
 						type='button'
 						className='moviePage__play-button'
+						style={{ marginBottom: '10px' }}
 						onClick={playMovie}
 					>
 						Play

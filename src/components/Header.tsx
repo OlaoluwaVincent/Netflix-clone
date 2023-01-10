@@ -17,7 +17,11 @@ const Header = () => {
 						My Lists
 					</Link>
 					<Link to={'/search'} className='header__link'>
-						<SearchIcon />
+						<SearchIcon
+							height={32}
+							width={24}
+							className='header__search-icon'
+						/>
 					</Link>
 				</nav>
 			</header>

@@ -25,30 +25,33 @@ const MyList = () => {
 	};
 
 	return (
-		<div className='page'>
-			{localStore.length < 1 ? (
-				<div className='empty'>
-					<h1 className='empty-heading'>
-						OOPS!!! <br /> You have not saved any movie to list yet
-					</h1>
-					<Empty width='90vw' />
-				</div>
-			) : (
-				<div className='searchedMovies'>
-					<div className='listofmovies'>
-						<h1 className='category__header'>My List</h1>
-						<div className='movies'>
-							{localStore &&
-								localStore.map((movies) => (
-									<MovieContainer
-										key={`${movies.id}-${movies.title}`}
-										movie={movies}
-									/>
-								))}
+		<div className='page' style={{ overflow: 'hidden' }}>
+			<div style={{ padding: '0 20px' }}>
+				{localStore.length < 1 ? (
+					<div className='empty'>
+						<h1 className='empty-heading'>
+							OOPS!!! <br /> You have not saved any movie to list
+							yet
+						</h1>
+						<Empty width='90vw' />
+					</div>
+				) : (
+					<div className='searchedMovies'>
+						<div className='listofmovies'>
+							<h1 className='category__header'>Saved Movies</h1>
+							<div className='movies'>
+								{localStore &&
+									localStore.map((movies) => (
+										<MovieContainer
+											key={`${movies.id}-${movies.title}`}
+											movie={movies}
+										/>
+									))}
+							</div>
 						</div>
 					</div>
-				</div>
-			)}
+				)}
+			</div>
 		</div>
 	);
 };
