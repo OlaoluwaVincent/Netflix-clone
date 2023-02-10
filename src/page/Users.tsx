@@ -15,16 +15,14 @@ function Users() {
 					This app uses data from the TMDB Api, it was designed to
 					exercise my skills as a practical work. <br />
 				</p>
-				<p className='intro-info'>
-					<ul>
-						<b>Note:</b>
-						<li>You cannot watch the actual movie here</li>
-						<li>
-							You can only watch the trailer of the movie{' '}
-							<i>if</i> available
-						</li>
-					</ul>
-				</p>
+				<ul className='intro-info'>
+					<b>Note:</b>
+					<li>You cannot watch the actual movie here</li>
+					<li>
+						You can only watch the trailer of the movie <i>if</i>{' '}
+						available
+					</li>
+				</ul>
 			</section>
 			<div className='userBoxes'>
 				<UserBox userName={name} />

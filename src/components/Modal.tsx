@@ -63,6 +63,7 @@ const Modal = ({ open, close, id }: Props) => {
 							<Link
 								to={`/movie/${content.id}`}
 								className='modal__movie-info'
+								onClick={close}
 							>
 								{' '}
 								More Info

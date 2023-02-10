@@ -697,11 +697,11 @@ img {
 	margin-bottom: 10px;
 }
 
-.intro-info > ul > b {
+.intro-info > b {
 	font-size: 14px;
 }
 
-.intro-info > ul > li {
+.intro-info > li {
 	font-size: 13px;
 	margin-left: 20px;
 }
@@ -820,11 +820,11 @@ img {
 		font-size: 16px;
 	}
 
-	.intro-info > ul > b {
+	.intro-info > b {
 		font-size: 18px;
 	}
 
-	.intro-info > ul > li {
+	.intro-info > li {
 		font-size: 16px;
 	}
 }
